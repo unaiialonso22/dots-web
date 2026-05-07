@@ -1,8 +1,7 @@
-import LandingSimple from "./pages/LandingSimple";
-import "./App.css";
+import Landing from "./pages/Landing";
 
-const App = () => {
-  return <LandingSimple />;
-};
+function App() {
+  return <Landing />;
+}
 
 export default App;
