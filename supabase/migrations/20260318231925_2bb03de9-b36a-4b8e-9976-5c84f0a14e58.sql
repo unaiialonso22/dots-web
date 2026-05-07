@@ -1,0 +1,1 @@
+ALTER TABLE public.ideas ADD COLUMN media_urls text[] DEFAULT '{}'::text[];
