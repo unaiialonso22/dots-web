@@ -1,5 +1,6 @@
 {
   "routes": [
+    { "src": "/blog/bloqueo-creativo/?", "dest": "/blog/bloqueo-creativo/index.html" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
