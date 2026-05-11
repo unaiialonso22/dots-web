@@ -1,3 +1,4 @@
+import BlogBloqueoCreativo from "./pages/BlogBloqueoCreativo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,7 +10,6 @@ import { SubscriptionProvider } from "@/hooks/useSubscription";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
 import Landing from "./pages/Landing";
-import BlogBloqueoCreativo from "./pages/BlogBloqueoCreativo";
 import Challenge from "./pages/Challenge";
 import Training from "./pages/Training";
 import Feed from "./pages/Feed";
