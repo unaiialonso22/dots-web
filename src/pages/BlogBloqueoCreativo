@@ -1,5 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, CSSProperties } from "react";
 import { Link } from "react-router-dom";
+
+const s: Record<string, CSSProperties> = {
+  page: { minHeight: "100vh", background: "#000A44", color: "#ffffff", fontFamily: "'DM Sans', sans-serif" },
+  nav: { position: "sticky", top: 0, zIndex: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "0 1.5rem", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", background: "#000A44" },
+  logo: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.1rem", color: "#ffffff", textDecoration: "none" },
+  back: { fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", textDecoration: "none" },
+  main: { maxWidth: 720, margin: "0 auto", padding: "3rem 1.5rem 5rem" },
+  tag: { display: "inline-block", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", padding: "4px 12px", borderRadius: 100, marginBottom: "1.25rem" },
+  h1: { fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.75rem, 5vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.03em", marginBottom: "1rem" },
+  meta: { fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", marginBottom: "2.5rem", paddingBottom: "2rem", borderBottom: "1px solid rgba(255,255,255,0.1)" },
+  intro: { fontSize: "1.125rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, marginBottom: "2.5rem" },
+  h2: { fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.4rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "2.5rem 0 1rem" },
+  h3: { fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" },
+  p: { marginBottom: "1.25rem", lineHeight: 1.75 },
+  ul: { paddingLeft: "1.5rem", marginBottom: "1.25rem", lineHeight: 1.75 },
+  li: { marginBottom: "0.5rem" },
+  highlight: { background: "rgba(255,255,255,0.05)", borderLeft: "3px solid rgba(255,255,255,0.8)", borderRadius: "0 8px 8px 0", padding: "1.25rem 1.5rem", margin: "2rem 0" },
+  cta: { background: "rgba(255,255,255,0.95)", borderRadius: 12, padding: "2rem", margin: "3rem 0 0", textAlign: "center" },
+  ctaTitle: { fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.5rem", color: "#000A44" },
+  ctaText: { color: "#000A44", opacity: 0.7, marginBottom: "1.25rem" },
+  ctaBtn: { display: "inline-block", background: "#000A44", color: "#ffffff", fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.9rem", padding: "10px 24px", borderRadius: 8, textDecoration: "none" },
+};
 
 export default function BlogBloqueoCreativo() {
   useEffect(() => {
@@ -9,86 +31,63 @@ export default function BlogBloqueoCreativo() {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background, #000A44)", color: "var(--foreground, #ffffff)", fontFamily: "'DM Sans', sans-serif" }}>
-
-      {/* Nav */}
-      <nav style={{ position: "sticky", top: 0, zIndex: 10, borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "0 1.5rem", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", background: "inherit" }}>
-        <Link to="/" style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.1rem", color: "inherit", textDecoration: "none" }}>DOTS</Link>
-        <Link to="/" style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6 }}>
-          ← Volver al inicio
-        </Link>
+    <div style={s.page}>
+      <nav style={s.nav}>
+        <Link to="/" style={s.logo}>DOTS</Link>
+        <Link to="/" style={s.back}>← Volver al inicio</Link>
       </nav>
+      <main style={s.main}>
+        <span style={s.tag}>Creatividad</span>
+        <h1 style={s.h1}>Bloqueo creativo: qué es, por qué ocurre y cómo superarlo hoy</h1>
+        <p style={s.meta}>Por DOTS · 11 de mayo de 2026 · 6 min de lectura</p>
+        <p style={s.intro}>¿Alguna vez te has quedado mirando una pantalla en blanco sin saber por dónde empezar? Eso tiene nombre: <strong>bloqueo creativo</strong>. Y tiene solución.</p>
 
-      {/* Content */}
-      <main style={{ maxWidth: 720, margin: "0 auto", padding: "3rem 1.5rem 5rem" }}>
+        <h2 style={s.h2}>¿Qué es el bloqueo creativo?</h2>
+        <p style={s.p}>El bloqueo creativo es la incapacidad temporal de generar ideas nuevas u originales. No significa que hayas perdido tu creatividad, sino que tu mente está atascada en los mismos patrones de pensamiento.</p>
+        <p style={s.p}>Según la psicología cognitiva, el cerebro tiende a seguir caminos neuronales ya conocidos porque es más eficiente energéticamente. Cuando intentamos crear algo nuevo, necesitamos activar rutas menos frecuentadas, y a veces el cerebro se resiste.</p>
 
-        <span style={{ display: "inline-block", fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", padding: "4px 12px", borderRadius: 100, marginBottom: "1.25rem" }}>
-          Creatividad
-        </span>
-
-        <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.75rem, 5vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.03em", marginBottom: "1rem" }}>
-          Bloqueo creativo: qué es, por qué ocurre y cómo superarlo hoy
-        </h1>
-
-        <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", marginBottom: "2.5rem", paddingBottom: "2rem", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-          Por DOTS · 11 de mayo de 2026 · 6 min de lectura
-        </p>
-
-        <p style={{ fontSize: "1.125rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.75, marginBottom: "2.5rem" }}>
-          ¿Alguna vez te has quedado mirando una pantalla en blanco sin saber por dónde empezar? ¿Sientes que las ideas no llegan justo cuando más las necesitas? Eso tiene nombre: <strong>bloqueo creativo</strong>. Y tiene solución.
-        </p>
-
-        <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.4rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "2.5rem 0 1rem" }}>¿Qué es el bloqueo creativo?</h2>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>El bloqueo creativo es la incapacidad temporal de generar ideas nuevas u originales. No significa que hayas perdido tu creatividad, sino que tu mente está atascada en los mismos patrones de pensamiento.</p>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>Según la psicología cognitiva, el cerebro tiende a seguir caminos neuronales ya conocidos porque es más eficiente energéticamente. Cuando intentamos crear algo nuevo, necesitamos activar rutas menos frecuentadas, y a veces el cerebro se resiste.</p>
-
-        <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.4rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "2.5rem 0 1rem" }}>Causas más comunes del bloqueo creativo</h2>
-        <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.25rem", lineHeight: 1.75 }}>
-          <li style={{ marginBottom: "0.5rem" }}><strong>Perfeccionismo:</strong> el miedo a que lo que crees no sea suficientemente bueno te paraliza antes de empezar.</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>Falta de estímulos nuevos:</strong> si consumes siempre lo mismo, produces siempre lo mismo.</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>Presión y estrés:</strong> el cortisol inhibe el córtex prefrontal, donde ocurre el pensamiento creativo.</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>Exceso de distracción:</strong> el modo multitarea fragmenta la atención e impide el estado de flujo.</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>Fatiga mental:</strong> forzar al cerebro a crear sin descanso es contraproducente.</li>
+        <h2 style={s.h2}>Causas más comunes del bloqueo creativo</h2>
+        <ul style={s.ul}>
+          <li style={s.li}><strong>Perfeccionismo:</strong> el miedo a que lo que crees no sea suficientemente bueno te paraliza antes de empezar.</li>
+          <li style={s.li}><strong>Falta de estímulos nuevos:</strong> si consumes siempre lo mismo, produces siempre lo mismo.</li>
+          <li style={s.li}><strong>Presión y estrés:</strong> el cortisol inhibe el córtex prefrontal, donde ocurre el pensamiento creativo.</li>
+          <li style={s.li}><strong>Exceso de distracción:</strong> el modo multitarea fragmenta la atención e impide el estado de flujo.</li>
+          <li style={s.li}><strong>Fatiga mental:</strong> forzar al cerebro a crear sin descanso es contraproducente.</li>
         </ul>
 
-        <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.4rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "2.5rem 0 1rem" }}>Técnicas efectivas para superar el bloqueo creativo</h2>
+        <h2 style={s.h2}>Técnicas efectivas para superar el bloqueo creativo</h2>
 
-        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" }}>1. El método de las conexiones aleatorias</h3>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>Una de las técnicas más potentes es obligar al cerebro a conectar dos conceptos que aparentemente no tienen nada que ver. Esta técnica se basa en el <strong>pensamiento lateral</strong>, desarrollado por el psicólogo Edward de Bono.</p>
-
-        <div style={{ background: "rgba(255,255,255,0.05)", borderLeft: "3px solid rgba(255,255,255,0.8)", borderRadius: "0 8px 8px 0", padding: "1.25rem 1.5rem", margin: "2rem 0" }}>
-          <p style={{ margin: 0, lineHeight: 1.75 }}>Esto es exactamente lo que hace <strong>DOTS</strong>: conectar dos conceptos aleatorios para activar tu creatividad y sacarla del bloqueo. Gratis y sin registro.</p>
+        <h3 style={s.h3}>1. El método de las conexiones aleatorias</h3>
+        <p style={s.p}>Una de las técnicas más potentes es obligar al cerebro a conectar dos conceptos que aparentemente no tienen nada que ver. Esta técnica se basa en el <strong>pensamiento lateral</strong>, desarrollado por el psicólogo Edward de Bono.</p>
+        <div style={s.highlight}>
+          <p style={{ margin: 0, lineHeight: 1.75 }}>Esto es exactamente lo que hace <strong>DOTS</strong>: conectar dos conceptos aleatorios para activar tu creatividad. Gratis y sin registro.</p>
         </div>
 
-        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" }}>2. Escribir sin filtro (freewriting)</h3>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>Pon un temporizador de 10 minutos y escribe sin parar, sin corregir, sin pensar si tiene sentido. El objetivo no es producir algo útil, sino desatascar el flujo de pensamiento.</p>
+        <h3 style={s.h3}>2. Escribir sin filtro (freewriting)</h3>
+        <p style={s.p}>Pon un temporizador de 10 minutos y escribe sin parar, sin corregir. El objetivo no es producir algo útil, sino desatascar el flujo de pensamiento.</p>
 
-        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" }}>3. Cambiar de entorno físico</h3>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>Nuestro cerebro asocia lugares con estados mentales. Cambiar de café, sala o incluso de silla puede ser suficiente para desbloquear nuevas ideas.</p>
+        <h3 style={s.h3}>3. Cambiar de entorno físico</h3>
+        <p style={s.p}>Nuestro cerebro asocia lugares con estados mentales. Cambiar de café, sala o incluso de silla puede ser suficiente para desbloquear nuevas ideas.</p>
 
-        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" }}>4. La técnica SCAMPER</h3>
-        <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.25rem", lineHeight: 1.75 }}>
-          <li style={{ marginBottom: "0.5rem" }}><strong>S</strong>ustituir: ¿qué puedo reemplazar?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>C</strong>ombinar: ¿qué puedo combinar?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>A</strong>dapt: ¿a qué puedo adaptarlo?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>M</strong>odificar: ¿puedo exagerar algo?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>P</strong>oner en otros usos: ¿para qué más sirve?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>E</strong>liminar: ¿qué puedo quitar?</li>
-          <li style={{ marginBottom: "0.5rem" }}><strong>R</strong>eorganizar: ¿qué pasa si lo invierto?</li>
+        <h3 style={s.h3}>4. La técnica SCAMPER</h3>
+        <ul style={s.ul}>
+          <li style={s.li}><strong>S</strong>ustituir: ¿qué puedo reemplazar?</li>
+          <li style={s.li}><strong>C</strong>ombinar: ¿qué puedo combinar?</li>
+          <li style={s.li}><strong>A</strong>dapt: ¿a qué puedo adaptarlo?</li>
+          <li style={s.li}><strong>M</strong>odificar: ¿puedo exagerar algo?</li>
+          <li style={s.li}><strong>P</strong>oner en otros usos: ¿para qué más sirve?</li>
+          <li style={s.li}><strong>E</strong>liminar: ¿qué puedo quitar?</li>
+          <li style={s.li}><strong>R</strong>eorganizar: ¿qué pasa si lo invierto?</li>
         </ul>
 
-        <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", fontWeight: 600, margin: "2rem 0 0.75rem" }}>5. El descanso productivo</h3>
-        <p style={{ marginBottom: "1.25rem", lineHeight: 1.75 }}>Durante la ducha, un paseo o una siesta, el cerebro activa la <strong>red de modo por defecto</strong>, donde ocurre el pensamiento más creativo y asociativo.</p>
+        <h3 style={s.h3}>5. El descanso productivo</h3>
+        <p style={s.p}>Durante la ducha, un paseo o una siesta, el cerebro activa la <strong>red de modo por defecto</strong>, donde ocurre el pensamiento más creativo y asociativo.</p>
 
-        {/* CTA */}
-        <div style={{ background: "rgba(255,255,255,0.95)", borderRadius: 12, padding: "2rem", margin: "3rem 0 0", textAlign: "center" }}>
-          <h3 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.5rem", color: "#000A44" }}>Entrena tu creatividad ahora</h3>
-          <p style={{ color: "#000A44", opacity: 0.7, marginBottom: "1.25rem" }}>DOTS conecta dos conceptos aleatorios y te reta a encontrar la conexión. Es gratis y no necesitas cuenta.</p>
-          <Link to="/" style={{ display: "inline-block", background: "#000A44", color: "#ffffff", fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.9rem", padding: "10px 24px", borderRadius: 8, textDecoration: "none" }}>
-            Probar DOTS gratis →
-          </Link>
+        <div style={s.cta}>
+          <h3 style={s.ctaTitle}>Entrena tu creatividad ahora</h3>
+          <p style={s.ctaText}>DOTS conecta dos conceptos aleatorios y te reta a encontrar la conexión. Es gratis y no necesitas cuenta.</p>
+          <Link to="/" style={s.ctaBtn}>Probar DOTS gratis →</Link>
         </div>
-
       </main>
     </div>
   );
