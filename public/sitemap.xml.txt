@@ -12,14 +12,12 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Añade aquí más páginas cuando las crees, por ejemplo: -->
-  <!-- 
+  <!-- Artículos del blog -->
   <url>
-    <loc>https://www.connectdots.es/blog</loc>
+    <loc>https://www.connectdots.es/blog/bloqueo-creativo/</loc>
     <lastmod>2026-05-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-  -->
 
 </urlset>
