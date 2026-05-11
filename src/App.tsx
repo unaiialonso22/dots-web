@@ -1,4 +1,5 @@
 import BlogBloqueoCreativo from "./pages/BlogBloqueoCreativo";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -30,6 +31,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Landing /></PageTransition>} />
+        <Route path="/blog/bloqueo-creativo" element={<BlogBloqueoCreativo />} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         <Route path="/blog/bloqueo-creativo" element={<BlogBloqueoCreativo />} />
         <Route path="/challenge" element={<PageTransition><Challenge /></PageTransition>} />
