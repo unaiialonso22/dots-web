@@ -31,6 +31,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Landing /></PageTransition>} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
+        <Route path="/blog/bloqueo-creativo" element={<BlogBloqueoCreativo />} />
         <Route path="/challenge" element={<PageTransition><Challenge /></PageTransition>} />
         <Route path="/training" element={<PageTransition><Training /></PageTransition>} />
         <Route path="/improve" element={<PageTransition><Improve /></PageTransition>} />
