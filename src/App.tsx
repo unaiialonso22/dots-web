@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/hooks/useTheme";
 import { SubscriptionProvider } from "@/hooks/useSubscription";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import Landing from "./pages/Landing";
 import Challenge from "./pages/Challenge";
 import Training from "./pages/Training";
@@ -63,6 +64,7 @@ const App = () => (
           </SubscriptionProvider>
         </AuthProvider>
       </ThemeProvider>
+      <Analytics />
     </TooltipProvider>
   </QueryClientProvider>
 );
