@@ -25,6 +25,7 @@ export default function AppNav() {
     { path: "/feed", label: t("nav_community") },
     { path: "/messages", label: t("nav_messages"), icon: "messages" },
     { path: "/portfolio", label: t("nav_profile") },
+    { path: "/blog/bloqueo-creativo", label: "Blog" },
     { path: "/premium", label: t("nav_premium") },
   ];
 

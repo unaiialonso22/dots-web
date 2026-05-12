@@ -104,6 +104,9 @@ const Landing = () => {
             >
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </Button>
+            <Button variant="ghost" size="sm" onClick={() => navigate("/blog/bloqueo-creativo")} className="hidden sm:inline-flex">
+              Blog
+            </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate("/feed")} className="hidden sm:inline-flex">
               Comunidad
             </Button>
