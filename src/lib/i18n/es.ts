@@ -187,7 +187,7 @@ const es = {
 
   // Premium
   premium_title: "Premium",
-  premium_price: "6,99 €/mes",
+  premium_price: "4,99 €/mes",
   premium_subscribe: "Hazte Premium",
   premium_manage: "Gestionar suscripción",
 

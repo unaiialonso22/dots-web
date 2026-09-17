@@ -145,7 +145,7 @@ export default function Premium() {
           ) : (
             <div className="space-y-4">
               <div>
-                <p className="text-4xl font-heading font-bold mb-1">6,99€</p>
+                <p className="text-4xl font-heading font-bold mb-1">4,99€</p>
                 <p className="text-sm text-muted-foreground">al mes</p>
               </div>
               <ul className="text-sm text-left max-w-xs mx-auto space-y-2">

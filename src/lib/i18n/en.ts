@@ -187,7 +187,7 @@ const en: Record<string, string> = {
 
   // Premium
   premium_title: "Premium",
-  premium_price: "€6.99/month",
+  premium_price: "€4.99/month",
   premium_subscribe: "Go Premium",
   premium_manage: "Manage subscription",
 
