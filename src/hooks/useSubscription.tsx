@@ -14,7 +14,7 @@ const SubscriptionContext = createContext<SubscriptionContextType>({
   checkSubscription: async () => {},
 });
 
-const PREMIUM_PRODUCT_ID = "prod_UAjJtymEazemzY";
+const PREMIUM_PRODUCT_ID = "prod_VLjowKnP8SaLxF";
 
 export function SubscriptionProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();

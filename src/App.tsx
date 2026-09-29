@@ -18,6 +18,8 @@ import Auth from "./pages/Auth";
 import Portfolio from "./pages/Portfolio";
 import Improve from "./pages/Improve";
 import Premium from "./pages/Premium";
+import Checkout from "./pages/Checkout";
+import CheckoutReturn from "./pages/CheckoutReturn";
 import Messages from "./pages/Messages";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
@@ -40,6 +42,8 @@ function AnimatedRoutes() {
         <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
         <Route path="/messages" element={<PageTransition><Messages /></PageTransition>} />
         <Route path="/premium" element={<PageTransition><Premium /></PageTransition>} />
+        <Route path="/pago" element={<PageTransition><Checkout /></PageTransition>} />
+        <Route path="/pago/gracias" element={<PageTransition><CheckoutReturn /></PageTransition>} />
         <Route path="/user/:userId" element={<PageTransition><UserProfile /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

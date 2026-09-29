@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Lightbulb, Brain, Check, Crown, Settings, Dumbbell } from "lucide-react";
@@ -8,10 +7,8 @@ import logoDark from "@/assets/logo-dark.svg";
 import logoLight from "@/assets/logo-light.svg";
 import AppNav from "@/components/AppNav";
 import Footer from "@/components/Footer";
-import { useAuth } from "@/hooks/useAuth";
 import { useSubscription } from "@/hooks/useSubscription";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+import { openCustomerPortal } from "@/lib/billing";
 
 const FEATURES = [
   {
@@ -33,47 +30,8 @@ const FEATURES = [
 
 export default function Premium() {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const { isPremium, checkSubscription } = useSubscription();
-  const [searchParams] = useSearchParams();
-  const [checkingOut, setCheckingOut] = useState(false);
+  const { isPremium } = useSubscription();
   const { theme } = useTheme();
-
-  useEffect(() => {
-    if (searchParams.get("success") === "true") {
-      toast.success("¡Ahora eres usuario Premium!");
-      checkSubscription();
-    }
-  }, [searchParams, checkSubscription]);
-
-  const handleCheckout = async () => {
-    if (!user) {
-      navigate("/auth");
-      return;
-    }
-    setCheckingOut(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-checkout");
-      if (error) throw error;
-      if (data?.url) {
-        window.open(data.url, "_blank");
-      }
-    } catch (e: any) {
-      toast.error(e.message || "Error al iniciar el pago.");
-    } finally {
-      setCheckingOut(false);
-    }
-  };
-
-  const handleManage = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke("customer-portal");
-      if (error) throw error;
-      if (data?.url) window.open(data.url, "_blank");
-    } catch (e: any) {
-      toast.error("Error al abrir la gestión de suscripción.");
-    }
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -137,7 +95,7 @@ export default function Premium() {
               <p className="text-sm text-muted-foreground">
                 Disfruta de todas las funciones exclusivas.
               </p>
-              <Button variant="outline" onClick={handleManage} className="gap-2">
+              <Button variant="outline" onClick={() => openCustomerPortal("Error al abrir la gestión de suscripción.")} className="gap-2">
                 <Settings className="w-4 h-4" />
                 Gestionar suscripción
               </Button>
@@ -149,20 +107,16 @@ export default function Premium() {
                 <p className="text-sm text-muted-foreground">al mes</p>
               </div>
               <ul className="text-sm text-left max-w-xs mx-auto space-y-2">
-                {["Modo Experto Creativo IA", "Modo entrenamiento ilimitado", "Mini-ayuda creativa", "Exportar portfolio"].map((f) => (
+                {["Modo Experto Creativo IA", "Modo entrenamiento ilimitado", "Mini-ayuda creativa", "Mejora tu idea con IA"].map((f) => (
                   <li key={f} className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-score-high shrink-0" />
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
-              <Button
-                onClick={handleCheckout}
-                disabled={checkingOut}
-                className="w-full max-w-xs gap-2"
-              >
+              <Button onClick={() => navigate("/pago")} className="w-full max-w-xs gap-2">
                 <Sparkles className="w-4 h-4" />
-                {checkingOut ? "Redirigiendo..." : "Hazte Premium"}
+                Hazte Premium
               </Button>
               <p className="text-xs text-muted-foreground">
                 Pago seguro con Stripe · Cancela cuando quieras
