@@ -17,3 +17,7 @@ verify_jwt = false
 
 [functions.creative-hint]
 verify_jwt = false
+
+[auth]
+site_url = "https://app.connectdots.es"
+additional_redirect_urls = ["https://app.connectdots.es/**", "http://localhost:8080/**"]
