@@ -53,7 +53,7 @@ serve(async (req) => {
 
     if (hasActiveSub) {
       const sub = subscriptions.data[0];
-      subscriptionEnd = new Date(sub.current_period_end * 1000).toISOString();
+      subscriptionEnd = new Date(sub.items.data[0].current_period_end * 1000).toISOString();
       productId = sub.items.data[0].price.product;
     }
 
