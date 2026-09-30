@@ -55,7 +55,7 @@ const Auth = () => {
           password,
           options: {
             data: { display_name: displayName || email.split("@")[0] },
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: `${window.location.origin}/challenge`,
           },
         });
         if (error) throw error;

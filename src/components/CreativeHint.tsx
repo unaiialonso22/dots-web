@@ -110,7 +110,7 @@ export default function CreativeHint({ dotA, dotB }: CreativeHintProps) {
               <p className="font-heading font-semibold text-lg mb-1">{t("hint_no_available")}</p>
               <p className="text-sm text-muted-foreground max-w-sm mb-2">{t("hint_earn_info")}</p>
               <p className="text-xs text-muted-foreground mb-4">{t("hint_earn_details")}</p>
-              <Button onClick={() => { setShowPremiumDialog(false); navigate("/premium"); }}>
+              <Button onClick={() => { setShowPremiumDialog(false); navigate("/pago"); }}>
                 {t("training_go_premium")}
               </Button>
             </div>

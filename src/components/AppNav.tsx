@@ -26,7 +26,7 @@ export default function AppNav() {
     { path: "/messages", label: t("nav_messages"), icon: "messages" },
     { path: "/portfolio", label: t("nav_profile") },
     { path: "/blog/bloqueo-creativo", label: "Blog" },
-    { path: "/premium", label: t("nav_premium") },
+    { path: "/pago", label: t("nav_premium") },
   ];
 
   const toggleLang = () => setLang(lang === "es" ? "en" : "es");
@@ -48,9 +48,9 @@ export default function AppNav() {
               onClick={() => navigate(item.path)}
               className={`text-xs font-heading ${
                 location.pathname === item.path ? "bg-muted font-semibold" : ""
-              } ${item.path === "/premium" ? "text-premium" : ""}`}
+              } ${item.path === "/pago" ? "text-premium" : ""}`}
             >
-              {item.path === "/premium" && <Crown className="w-3 h-3 mr-1" />}
+              {item.path === "/pago" && <Crown className="w-3 h-3 mr-1" />}
               {item.icon === "messages" && <MessageCircle className="w-3 h-3 mr-1" />}
               {item.label}
             </Button>
@@ -107,9 +107,9 @@ export default function AppNav() {
                   onClick={() => { navigate(item.path); setMobileOpen(false); }}
                   className={`w-full justify-start text-sm font-heading ${
                     location.pathname === item.path ? "bg-muted font-semibold" : ""
-                  } ${item.path === "/premium" ? "text-premium" : ""}`}
+                  } ${item.path === "/pago" ? "text-premium" : ""}`}
                 >
-                  {item.path === "/premium" && <Crown className="w-3 h-3 mr-1" />}
+                  {item.path === "/pago" && <Crown className="w-3 h-3 mr-1" />}
                   {item.label}
                 </Button>
               ))}

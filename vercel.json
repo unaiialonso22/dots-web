@@ -1,1 +1,10 @@
-{"rewrites":[{"source":"/(.*)","destination":"/index.html"}]}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/en", "destination": "/" },
+    { "source": "/en/:page(premium|comunidad|privacidad|aviso-legal)", "destination": "/:page" },
+    { "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)", "destination": "/app" },
+    { "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)/:rest*", "destination": "/app" }
+  ]
+}

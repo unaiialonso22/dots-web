@@ -10,19 +10,17 @@ import { ThemeProvider } from "@/hooks/useTheme";
 import { SubscriptionProvider } from "@/hooks/useSubscription";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { AnimatePresence } from "framer-motion";
-import Landing from "./pages/Landing";
 import Challenge from "./pages/Challenge";
 import Training from "./pages/Training";
 import Feed from "./pages/Feed";
 import Auth from "./pages/Auth";
 import Portfolio from "./pages/Portfolio";
 import Improve from "./pages/Improve";
-import Premium from "./pages/Premium";
 import Checkout from "./pages/Checkout";
 import CheckoutReturn from "./pages/CheckoutReturn";
 import Messages from "./pages/Messages";
 import UserProfile from "./pages/UserProfile";
-import NotFound from "./pages/NotFound";
+import OutsideApp from "./pages/OutsideApp";
 import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
@@ -32,7 +30,6 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Landing /></PageTransition>} />
         <Route path="/blog/bloqueo-creativo" element={<BlogBloqueoCreativo />} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         <Route path="/challenge" element={<PageTransition><Challenge /></PageTransition>} />
@@ -41,11 +38,10 @@ function AnimatedRoutes() {
         <Route path="/feed" element={<PageTransition><Feed /></PageTransition>} />
         <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
         <Route path="/messages" element={<PageTransition><Messages /></PageTransition>} />
-        <Route path="/premium" element={<PageTransition><Premium /></PageTransition>} />
         <Route path="/pago" element={<PageTransition><Checkout /></PageTransition>} />
         <Route path="/pago/gracias" element={<PageTransition><CheckoutReturn /></PageTransition>} />
         <Route path="/user/:userId" element={<PageTransition><UserProfile /></PageTransition>} />
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        <Route path="*" element={<OutsideApp />} />
       </Routes>
     </AnimatePresence>
   );

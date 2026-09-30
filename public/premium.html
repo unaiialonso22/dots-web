@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOTS Premium · Modo experto para los que viven de esto</title>
+<meta name="description" content="La IA en modo experto, entrenamiento ilimitado y una pista cuando te atascas. 4,99 € al mes, sin permanencia. El plan gratuito sigue siendo gratis para siempre.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000a44" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://connectdots.es/premium">
+<link rel="alternate" hreflang="es" href="https://connectdots.es/premium">
+<link rel="alternate" hreflang="en" href="https://connectdots.es/en/premium">
+<link rel="alternate" hreflang="x-default" href="https://connectdots.es/premium">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="DOTS">
+<meta property="og:title" content="DOTS Premium · Modo experto para los que viven de esto">
+<meta property="og:description" content="La IA en modo experto, entrenamiento ilimitado y una pista cuando te atascas. 4,99 € al mes, sin permanencia. El plan gratuito sigue siendo gratis para siempre.">
+<meta property="og:url" content="https://connectdots.es/premium">
+<meta property="og:image" content="https://connectdots.es/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOTS Premium · Modo experto para los que viven de esto">
+<meta name="twitter:description" content="La IA en modo experto, entrenamiento ilimitado y una pista cuando te atascas. 4,99 € al mes, sin permanencia. El plan gratuito sigue siendo gratis para siempre.">
+<meta name="twitter:image" content="https://connectdots.es/assets/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%23000a42'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23fff' stroke-width='2.6'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Ccircle cx='42' cy='21' r='2.5' fill='%23fff'/%3E%3Ccircle cx='21' cy='25' r='2.1' fill='%23fff'/%3E%3Ccircle cx='24' cy='43' r='2.3' fill='%23fff'/%3E%3Ccircle cx='43' cy='41' r='2' fill='%23a385e0'/%3E%3C/svg%3E" type="image/svg+xml">
+<script>
+/* el tema se decide antes de pintar, para que no haya un parpadeo blanco */
+(function(){try{var t=localStorage.getItem('dots-theme');
+if(!t) t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+if(t==='dark') document.documentElement.classList.add('dark');}catch(e){}})();
+</script>
+<script src="/data.js"></script>
+<script src="/i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap">
+<link rel="stylesheet" href="/dots.css">
+<style>
+
+.hero-p{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,72px);align-items:center}
+.hero-p .art{position:relative;aspect-ratio:1.15;border-radius:24px;border:1px solid hsl(var(--premium)/.45);background:hsl(var(--card));box-shadow:var(--shadow-card);overflow:hidden}
+.hero-p .art svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-p .art line{stroke:hsl(var(--premium)/.55);stroke-width:1}
+.hero-p .art circle{fill:hsl(var(--premium))}
+.hero-p .art .big{fill:hsl(var(--foreground))}
+.status{display:inline-flex;align-items:center;gap:10px;margin:0 0 22px;padding:8px 14px 8px 10px;border-radius:999px;
+  border:1px solid hsl(var(--premium)/.5);background:hsl(var(--card));font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:hsl(var(--premium));box-shadow:0 0 0 4px hsl(var(--premium)/.18)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,2.4vw,28px);margin-top:clamp(40px,6vh,66px)}
+.feat{padding:30px 28px 32px;border-radius:20px;border:1px solid hsl(var(--border));background:hsl(var(--card));box-shadow:var(--shadow-card)}
+.feat::before{background:hsl(var(--premium))}
+.feat:hover::before{background:hsl(var(--premium))}
+.feat .num{font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.2em;color:hsl(var(--muted-foreground))}
+.feat h3{margin-top:12px}
+.feat p{color:hsl(var(--muted-foreground));margin:12px 0 0;font-size:15.6px;max-width:40ch}
+.feats.wired>.ncard:nth-child(2n+1)::after{left:50%}
+.feats.wired>.ncard:nth-child(2n)::after{right:50%}
+.cmp{margin-top:clamp(40px,6vh,66px);border:1px solid hsl(var(--border));border-radius:20px;overflow:hidden;background:hsl(var(--card));box-shadow:var(--shadow-card)}
+.cmp table{width:100%;border-collapse:collapse;font-size:15.4px}
+.cmp th,.cmp td{padding:16px 22px;text-align:left;border-bottom:1px solid hsl(var(--border))}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:hsl(var(--muted-foreground));background:hsl(var(--secondary)/.5)}
+.cmp th.pr{color:hsl(var(--foreground))}
+:root.dark .cmp th.pr{color:hsl(var(--premium))}
+.cmp td:first-child{color:hsl(var(--foreground));font-weight:500}
+.cmp td{color:hsl(var(--muted-foreground))}
+.cmp td.pr{color:hsl(var(--foreground))}
+.cmp td .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:hsl(var(--dot-a));margin-right:9px;vertical-align:1px}
+.cmp td.pr .dot{background:hsl(var(--premium))}
+.fine{margin:16px 0 0;font-family:var(--display);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:hsl(var(--muted-foreground))}
+.steps-p{list-style:none;margin:clamp(40px,6vh,66px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px)}
+.steps-p li{position:relative;padding:28px 26px 30px;border-radius:20px;border:1px solid hsl(var(--border));background:hsl(var(--card));box-shadow:var(--shadow-card)}
+.steps-p .n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid hsl(var(--premium)/.6);color:hsl(var(--foreground));font-family:var(--display);font-weight:600;font-size:13px}
+.steps-p h3{margin:16px 0 0;font-size:19px}
+.steps-p p{color:hsl(var(--muted-foreground));margin:10px 0 0;font-size:15.2px}
+.buy{margin-top:clamp(40px,6vh,66px);padding:34px 30px;border-radius:22px;border:1px solid hsl(var(--premium)/.5);background:hsl(var(--card));box-shadow:var(--shadow-card);
+  display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center}
+.buy p{margin:10px 0 0;color:hsl(var(--muted-foreground));max-width:52ch}
+.buy .bigprice{font-family:var(--display);font-weight:700;font-size:clamp(34px,4.6vw,52px);letter-spacing:-.02em;line-height:1;margin:6px 0 0;color:hsl(var(--foreground))}
+.buy .bigprice small{font-family:var(--body);font-weight:400;font-size:16px;color:hsl(var(--muted-foreground));letter-spacing:0}
+.buy .ctas{margin-top:0;flex-direction:column;align-items:flex-end;gap:12px}
+.buy .fine{margin:0}
+@media (max-width:880px){.hero-p{grid-template-columns:1fr}.hero-p .art{max-width:460px}.feats{grid-template-columns:1fr}.steps-p{grid-template-columns:1fr}.buy{grid-template-columns:1fr}.buy .ctas{align-items:flex-start}}
+@media (max-width:620px){.cmp th,.cmp td{padding:13px 12px;font-size:14px}}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="dots-logo" viewBox="0 0 130.84 40.61"><g> <path fill="currentColor" d="M0,39.9V.76h8.21c3.94,0,7.05.39,9.33,1.17,2.45.76,4.67,2.05,6.67,3.88,4.04,3.68,6.06,8.53,6.06,14.53s-2.1,10.88-6.31,14.6c-2.11,1.86-4.33,3.15-6.64,3.88-2.16.73-5.23,1.09-9.2,1.09H0ZM5.91,34.35h2.66c2.65,0,4.86-.28,6.62-.84,1.76-.59,3.35-1.53,4.77-2.81,2.91-2.65,4.36-6.11,4.36-10.37s-1.44-7.77-4.31-10.44c-2.59-2.38-6.4-3.57-11.43-3.57h-2.66v28.04Z"/> <path fill="currentColor" d="M93.49,6.31v33.59h-5.91V6.31h-9V.76h23.88v5.55h-8.98Z"/> <path fill="currentColor" d="M129.82,6.59l-4.79,2.84c-.9-1.55-1.75-2.57-2.56-3.04-.85-.54-1.94-.81-3.27-.81-1.64,0-3,.46-4.08,1.39-1.08.91-1.62,2.06-1.62,3.45,0,1.91,1.42,3.45,4.26,4.61l3.9,1.6c3.18,1.28,5.5,2.85,6.97,4.7,1.47,1.85,2.2,4.12,2.2,6.81,0,3.6-1.2,6.57-3.6,8.92-2.42,2.37-5.42,3.55-9,3.55-3.4,0-6.2-1.01-8.42-3.02-2.18-2.01-3.54-4.84-4.08-8.49l5.98-1.32c.27,2.3.74,3.89,1.42,4.77,1.22,1.69,2.99,2.53,5.32,2.53,1.84,0,3.37-.62,4.59-1.85,1.22-1.23,1.82-2.8,1.82-4.69,0-.76-.11-1.46-.32-2.09-.21-.63-.54-1.22-.99-1.75-.45-.53-1.03-1.03-1.74-1.5-.71-.46-1.56-.91-2.53-1.33l-3.78-1.57c-5.36-2.26-8.04-5.58-8.04-9.94,0-2.94,1.12-5.4,3.37-7.38,2.25-1.99,5.04-2.99,8.39-2.99,4.51,0,8.04,2.2,10.57,6.59Z"/> </g> <g> <line fill="none" stroke="hsl(var(--hair))" stroke-miterlimit="10" stroke-width=".12" x1="63.65" y1="14.4" x2="57.19" y2="5.59"/> <line fill="none" stroke="hsl(var(--hair))" stroke-miterlimit="10" stroke-width=".12" x1="45.94" y1="11.96" x2="48.36" y2="16.11"/> <circle fill="currentColor" cx="56.71" cy="20.88" r="4.34"/> <g> <g> <polyline fill="none" stroke="hsl(var(--hair))" stroke-miterlimit="10" stroke-width=".12" points="61.49 34.24 56.56 29.9 67.6 30.4 61.79 34.45 51.72 34.06 52.76 27.4 56.59 29.86 63.14 26.3 64.55 20.48 63.3 14.44 62.48 7.84 66.87 10.57 63.3 14.44 63.31 14.07 48.9 16.26 48.73 16.98 49.44 7.97 51.99 13.1 48.42 16.75 48.16 16.71 44.79 19.6 44.65 16.5 45.94 30.49 51.27 33.76 51.72 34.06 49.03 25.05 43.68 25.52 44.89 20.33 48.84 24.84 48.85 24.59 43.68 25.52 45.86 30.43 45.9 30.39 52.76 27.4 52.15 27.08 48.84 24.84 48.63 16.73 48.61 16.88 44.37 13.86 45.78 12.33 44.37 13.86 44.67 16.41 45.97 12.05 46.05 11.96 49.61 8.3 49.69 8.35 52.22 13.14 57.08 5.61 62.13 7.83 62.48 7.84 56.15 9.79 57.05 5.7 49.85 8.27 56.15 9.79 62.74 13.73 63.62 13.83 66.96 16.63 67.09 11.05 67.2 10.15 69.64 21.36 69.42 21.81 67.6 30.4 62.81 26.28 63.12 26.43 69.42 21.81 64.55 20.48 66.95 16.69"/> <circle fill="currentColor" cx="63.14" cy="26.3" r="1.05"/> <circle fill="currentColor" cx="63.31" cy="14.07" r="1.05"/> <circle fill="currentColor" cx="56.15" cy="9.79" r="1.05"/> <circle fill="currentColor" cx="48.65" cy="16.53" r="1.05"/> <circle fill="currentColor" cx="48.84" cy="24.84" r="1.05"/> <circle fill="currentColor" cx="43.68" cy="25.52" r=".62"/> <circle fill="currentColor" cx="56.59" cy="29.86" r=".62"/> <circle fill="currentColor" cx="52.66" cy="27.42" r=".62"/> <circle fill="currentColor" cx="44.37" cy="13.86" r=".62"/> <circle fill="currentColor" cx="67.6" cy="30.4" r=".62"/> <circle fill="currentColor" cx="64.55" cy="20.48" r=".62"/> <circle fill="currentColor" cx="66.96" cy="16.63" r=".35"/> <circle fill="currentColor" cx="45.86" cy="30.43" r=".35"/> <circle fill="currentColor" cx="57.08" cy="5.61" r=".35"/> <circle fill="currentColor" cx="52.11" cy="12.91" r=".35"/> <circle fill="currentColor" cx="45.97" cy="12.05" r=".35"/> <circle fill="currentColor" cx="44.67" cy="16.41" r=".35"/> <circle fill="currentColor" cx="61.79" cy="34.45" r="1.05"/> <circle fill="currentColor" cx="69.51" cy="21.71" r="1.05"/> <circle fill="currentColor" cx="49.69" cy="8.35" r="1.05"/> <circle fill="currentColor" cx="44.79" cy="20.15" r="1.05"/> <circle fill="currentColor" cx="62.48" cy="7.84" r="1.05"/> <circle fill="currentColor" cx="67.07" cy="10.6" r="1.05"/> </g> <circle fill="currentColor" cx="51.53" cy="33.97" r="1.05"/> </g> </g> <path fill="currentColor" d="M70.66,6.01c-12.46-12.84-35-3.64-34.91,14.15-.42,18.36,22.39,27.12,34.88,14.54,8.06-7.47,8.02-21.13.03-28.69ZM56.12,38.08c-9.81,0-17.76-7.95-17.76-17.76S46.31,2.56,56.12,2.56s17.76,7.95,17.76,17.76-7.95,17.76-17.76,17.76Z"/></symbol></svg>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="env" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#" aria-label="DOTS, inicio">
+    <svg viewBox="0 0 130.84 40.61" role="img" aria-label="DOTS"><use href="#dots-logo"/></svg>
+  </a>
+  <div class="nav-links">
+    <a href="/#como">Cómo funciona</a>
+    <a href="/#base">La base de datos</a>
+    <a href="/#conecta">Pruébalo</a>
+    <a href="/comunidad">Comunidad</a>
+    <a href="/premium" aria-current="page">Premium</a>
+  </div>
+  <a class="lang" id="lang" href="/en" hreflang="en" lang="en" aria-label="View in English">EN</a>
+  <button class="tog" type="button" id="tog" style="margin-left:10px" aria-label="Cambiar entre modo claro y oscuro">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>
+    </svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/>
+    </svg>
+  </button>
+  <a class="btn" href="/challenge" rel="noopener">Empezar gratis</a>
+</nav>
+
+<main id="main" tabindex="-1">
+  <section class="sec page-head" id="premium-top">
+    <div class="hero-p">
+      <div class="rv">
+        <p class="kicker">Premium</p>
+        <p class="status">4,99 € al mes · Sin permanencia</p>
+        <h1>Para los que viven de esto</h1>
+        <p class="lede">El plan gratuito es el gimnasio. Premium es el entrenador personal: la IA en modo experto, entrenamiento sin límite y una pista cuando te atascas. Para quien tiene que entregar ideas cada semana.</p>
+        <div class="ctas">
+          <a class="btn big" href="/pago">Hazte Premium <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="/challenge">Entrena gratis</a>
+        </div>
+        <p class="fine">Pago seguro con Stripe · Cancela cuando quieras</p>
+      </div>
+      <div class="art rv" aria-hidden="true">
+        <svg viewBox="0 0 400 348">
+          <line x1="70" y1="250" x2="140" y2="120"/><line x1="140" y1="120" x2="215" y2="180"/><line x1="215" y1="180" x2="300" y2="90"/>
+          <line x1="215" y1="180" x2="330" y2="240"/><line x1="215" y1="180" x2="245" y2="290"/><line x1="300" y1="90" x2="330" y2="240"/>
+          <line x1="70" y1="250" x2="245" y2="290"/><line x1="140" y1="120" x2="90" y2="70"/>
+          <circle cx="70" cy="250" r="5"/><circle cx="140" cy="120" r="7"/><circle class="big" cx="215" cy="180" r="14"/>
+          <circle cx="300" cy="90" r="6"/><circle cx="330" cy="240" r="7"/><circle cx="245" cy="290" r="4.5"/><circle cx="90" cy="70" r="3.5"/>
+        </svg>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="sec" id="incluye">
+    <div class="rv">
+      <p class="kicker">Qué incluye</p>
+      <h2>Lo que cambia</h2>
+    </div>
+    <div class="feats wired stg">
+      <article class="feat ncard"><span class="num">01</span><h3>Modo Experto Creativo IA</h3><p>Un director creativo, un estratega de marca y un copywriter analizan tu idea y te dicen dónde flojea y cómo afilarla. No te la escriben: te la mejoran.</p></article>
+      <article class="feat ncard"><span class="num">02</span><h3>Modo entrenamiento ilimitado</h3><p>El reto del día es uno. En Premium tienes todos los que quieras, cuando quieras. Cuando estás en racha, no te cortamos.</p></article>
+      <article class="feat ncard"><span class="num">03</span><h3>Mini-ayuda creativa</h3><p>¿Bloqueado? Una pista sutil que te orienta sin darte la respuesta. La idea sigue siendo tuya.</p></article>
+      <article class="feat ncard"><span class="num">04</span><h3>Mejora tu idea con IA</h3><p>Ya tienes la idea, pero no termina de brillar. La IA la revisa contigo hasta que aguanta una presentación.</p></article>
+    </div>
+  </section>
+
+  <section class="sec" id="comparar">
+    <div class="rv">
+      <p class="kicker">Planes</p>
+      <h2>Gratis frente a Premium</h2>
+    </div>
+    <div class="cmp rv">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">Gratis</th><th scope="col" class="pr">Premium</th></tr></thead>
+        <tbody>
+          <tr><td>Reto del día</td><td><span class="dot"></span>Sí</td><td class="pr"><span class="dot"></span>Sí</td></tr>
+          <tr><td>Parejas al azar</td><td><span class="dot"></span>Ilimitadas</td><td class="pr"><span class="dot"></span>Ilimitadas</td></tr>
+          <tr><td>Ideas guardadas, portfolio y nivel</td><td><span class="dot"></span>Sí</td><td class="pr"><span class="dot"></span>Sí</td></tr>
+          <tr><td>Modo entrenamiento</td><td>No</td><td class="pr"><span class="dot"></span>Ilimitado</td></tr>
+          <tr><td>Análisis de tu idea con IA</td><td>No</td><td class="pr"><span class="dot"></span>Modo experto</td></tr>
+          <tr><td>Mini-ayuda creativa</td><td>No</td><td class="pr"><span class="dot"></span>Sí</td></tr>
+          <tr><td>Precio</td><td>0 €</td><td class="pr">4,99 € al mes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec" id="contratar">
+    <div class="rv">
+      <p class="kicker">Cómo se contrata</p>
+      <h2>Tres pasos y estás dentro</h2>
+    </div>
+    <ol class="steps-p rv">
+      <li><span class="n">1</span><h3>Crea tu cuenta</h3><p>O inicia sesión si ya la tienes. Premium va ligado a tu cuenta: es lo que desbloquea las funciones.</p></li>
+      <li><span class="n">2</span><h3>Elige cómo pagar</h3><p>Tarjeta, Apple Pay, Google Pay o PayPal, en el pago seguro de Stripe dentro de DOTS.</p></li>
+      <li><span class="n">3</span><h3>Ya eres Premium</h3><p>Se activa al momento. Se renueva cada mes y lo cancelas cuando quieras desde "Gestionar suscripción".</p></li>
+    </ol>
+    <div class="buy rv">
+      <div>
+        <p class="kicker">Premium</p>
+        <p class="bigprice">4,99 € <small>al mes</small></p>
+        <p>Sin permanencia. Cancela cuando quieras y sigues con el plan gratuito, que no se toca.</p>
+      </div>
+      <div class="ctas">
+        <a class="btn big" href="/pago">Hazte Premium <span class="arw" aria-hidden="true">→</span></a>
+        <p class="fine">Pago seguro con Stripe</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="rv">
+      <p class="kicker">Lo que suelen preguntar</p>
+      <h2>Las dudas de siempre</h2>
+    </div>
+    <div class="faq">
+      <div class="qa"><button type="button" aria-expanded="false">¿Cuánto cuesta Premium?<span class="ic" aria-hidden="true"></span></button>
+        <div class="ans"><p>4,99 € al mes. Sin permanencia: pagas mes a mes y lo dejas cuando quieras.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Cómo se paga?<span class="ic" aria-hidden="true"></span></button>
+        <div class="ans"><p>Con tarjeta, Apple Pay, Google Pay o PayPal, a través de Stripe. DOTS nunca ve ni guarda los datos de tu tarjeta.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Cómo cancelo?<span class="ic" aria-hidden="true"></span></button>
+        <div class="ans"><p>Desde "Gestionar suscripción" en la app, que abre tu portal de Stripe. Sin llamadas ni correos.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Necesito una cuenta?<span class="ic" aria-hidden="true"></span></button>
+        <div class="ans"><p>Sí. Premium se activa sobre tu cuenta de DOTS, así que hace falta una. Crearla es gratis y tarda un minuto.</p></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">¿Perderé algo de lo gratuito?<span class="ic" aria-hidden="true"></span></button>
+        <div class="ans"><p>No. El plan gratuito se queda como está, para siempre. Premium añade, no quita.</p></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="fwrap">
+    <a class="brand" href="#" aria-label="DOTS, inicio">
+      <svg viewBox="0 0 130.84 40.61" role="img" aria-label="DOTS"><use href="#dots-logo"/></svg>
+    </a>
+    <p class="tagline">El gimnasio para el pensamiento creativo.</p>
+    <nav aria-label="Pie de página">
+      <a href="/#como">Cómo funciona</a>
+      <a href="/#base">La base de datos</a>
+      <a href="/comunidad">Comunidad</a>
+      <a href="/premium">Premium</a>
+      <a href="/privacidad">Privacidad</a>
+      <a href="/aviso-legal">Aviso legal</a>
+      <button type="button" class="linkbtn" data-cookie-prefs>Cookies</button>
+    </nav>
+  </div>
+  <p class="legal">© <span id="yy">2026</span> DOTS · connectdots.es · Las marcas citadas pertenecen a sus dueños. Las ideas de ejemplo las escribió la comunidad de DOTS y no son campañas oficiales de esas marcas.</p>
+</footer>
+
+<script>applyI18n()</script>
+<script src="/cookies.js"></script>
+<script src="/dots.js"></script>
+</body>
+</html>

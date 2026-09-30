@@ -425,7 +425,7 @@ const Challenge = () => {
             open={!!pendingReward}
             onClose={() => setPendingReward(null)}
             reward={pendingReward}
-            onNavigatePremium={() => navigate("/premium")}
+            onNavigatePremium={() => navigate("/pago")}
           />
         )}
       </main>

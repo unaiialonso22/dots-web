@@ -141,7 +141,7 @@ export default function ExpertAnalysis({ dotA, dotB, idea }: ExpertAnalysisProps
                   Esta función forma parte del plan Premium. Obtén análisis creativos profesionales,
                   mejoras de ideas y copy publicitario generado por IA.
                 </p>
-                <Button onClick={() => { setOpen(false); navigate("/premium"); }}>
+                <Button onClick={() => { setOpen(false); navigate("/pago"); }}>
                   Hazte Premium
                 </Button>
               </div>

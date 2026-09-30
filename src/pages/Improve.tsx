@@ -138,7 +138,7 @@ export default function Improve() {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Lock className="w-4 h-4" /><span className="text-sm font-heading">Disponible solo en Premium.</span>
               </div>
-              <Button onClick={() => navigate("/premium")} variant="outline" className="gap-2">
+              <Button onClick={() => navigate("/pago")} variant="outline" className="gap-2">
                 <Crown className="w-4 h-4" />Hazte Premium
               </Button>
             </div>

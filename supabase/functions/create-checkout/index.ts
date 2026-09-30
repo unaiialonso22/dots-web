@@ -8,7 +8,7 @@ const corsHeaders = {
 };
 
 const PREMIUM_PRICE_ID = "price_1UL2LGRwBSt1p6P700WNxDhy";
-const APP_URL = "https://app.connectdots.es";
+const APP_URL = "https://connectdots.es";
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {

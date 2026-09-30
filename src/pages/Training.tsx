@@ -56,7 +56,7 @@ const Training = () => {
               <h1 className="text-2xl font-heading font-bold mb-2">Modo Entrenamiento</h1>
               <p className="text-muted-foreground max-w-md">El modo entrenamiento es una función Premium.</p>
             </div>
-            <Button onClick={() => navigate("/premium")} className="gap-2">
+            <Button onClick={() => navigate("/pago")} className="gap-2">
               <Crown className="w-4 h-4" />Hazte Premium
             </Button>
           </motion.div>
@@ -244,7 +244,7 @@ const Training = () => {
             open={!!pendingReward}
             onClose={() => setPendingReward(null)}
             reward={pendingReward}
-            onNavigatePremium={() => navigate("/premium")}
+            onNavigatePremium={() => navigate("/pago")}
           />
         )}
       </main>
