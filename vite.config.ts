@@ -7,9 +7,17 @@ import { componentTagger } from "lovable-tagger";
 // Keep in sync with the rewrites in vercel.json and APP_PATH in src/lib/appPaths.ts.
 const APP_ROUTE = /^\/(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)(\/|$)/;
 
+const LANDING_PAGE = /^(?:\/en)?\/(premium|comunidad|privacidad|aviso-legal)\/?$/;
+
+// Mirrors vercel.json locally, so `vite` and `vite preview` route like production.
 const serveAppRoutes = (): Plugin => {
   const rewrite: Connect.NextHandleFunction = (req, _res, next) => {
-    if (req.url && APP_ROUTE.test(req.url.split("?")[0])) req.url = "/app.html";
+    const [pathname, query] = (req.url ?? "").split("?");
+    const q = query ? `?${query}` : "";
+    const page = pathname.match(LANDING_PAGE);
+    if (APP_ROUTE.test(pathname)) req.url = `/app.html${q}`;
+    else if (pathname === "/" || pathname === "/en" || pathname === "/en/") req.url = `/index.html${q}`;
+    else if (page) req.url = `/${page[1]}.html${q}`;
     next();
   };
   return {

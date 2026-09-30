@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import BlogBloqueoCreativo from "./pages/BlogBloqueoCreativo";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,13 +21,24 @@ import Checkout from "./pages/Checkout";
 import CheckoutReturn from "./pages/CheckoutReturn";
 import Messages from "./pages/Messages";
 import UserProfile from "./pages/UserProfile";
-import OutsideApp from "./pages/OutsideApp";
+import NotFound from "./pages/NotFound";
+import { APP_PATH } from "@/lib/appPaths";
 import PageTransition from "./components/PageTransition";
 
 const queryClient = new QueryClient();
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const inApp = APP_PATH.test(location.pathname);
+
+  // Landing pages ("/", "/premium"…) are not part of this app, so an in-app link to one needs a full page load.
+  // It runs on the location change itself: waiting for the exit animation could leave the visitor on a blank page.
+  useEffect(() => {
+    if (!inApp) window.location.replace(location.pathname + location.search + location.hash);
+  }, [inApp, location]);
+
+  if (!inApp) return null;
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -41,7 +53,7 @@ function AnimatedRoutes() {
         <Route path="/pago" element={<PageTransition><Checkout /></PageTransition>} />
         <Route path="/pago/gracias" element={<PageTransition><CheckoutReturn /></PageTransition>} />
         <Route path="/user/:userId" element={<PageTransition><UserProfile /></PageTransition>} />
-        <Route path="*" element={<OutsideApp />} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
