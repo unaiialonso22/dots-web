@@ -1,10 +1,35 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.connectdots.es"
+        }
+      ],
+      "destination": "https://connectdots.es/:path",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/en", "destination": "/" },
-    { "source": "/en/:page(premium|comunidad|privacidad|aviso-legal)", "destination": "/:page" },
-    { "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)", "destination": "/app" },
-    { "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)/:rest*", "destination": "/app" }
+    {
+      "source": "/en",
+      "destination": "/"
+    },
+    {
+      "source": "/en/:page(premium|comunidad|privacidad|aviso-legal)",
+      "destination": "/:page"
+    },
+    {
+      "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)",
+      "destination": "/app"
+    },
+    {
+      "source": "/:app(auth|challenge|training|improve|feed|portfolio|messages|pago|user|blog)/:rest*",
+      "destination": "/app"
+    }
   ]
 }
