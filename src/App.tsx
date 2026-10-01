@@ -29,15 +29,16 @@ const queryClient = new QueryClient();
 
 function AnimatedRoutes() {
   const location = useLocation();
-  const inApp = APP_PATH.test(location.pathname);
-
   // Landing pages ("/", "/premium"…) are not part of this app, so an in-app link to one needs a full page load.
-  // It runs on the location change itself: waiting for the exit animation could leave the visitor on a blank page.
-  useEffect(() => {
-    if (!inApp) window.location.replace(location.pathname + location.search + location.hash);
-  }, [inApp, location]);
+  // Only for in-app navigation: on the first load the server already chose this app, and reloading would loop.
+  const leaving = !APP_PATH.test(location.pathname) && location.key !== "default";
 
-  if (!inApp) return null;
+  // On the location change itself: waiting for the exit animation could leave the visitor on a blank page.
+  useEffect(() => {
+    if (leaving) window.location.replace(location.pathname + location.search + location.hash);
+  }, [leaving, location]);
+
+  if (leaving) return null;
 
   return (
     <AnimatePresence mode="wait">
