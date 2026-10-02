@@ -1,180 +1,84 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "npm:@supabase/supabase-js@2.57.2";
+import { betaJSONSchemaOutputFormat } from "npm:@anthropic-ai/sdk@0.131.0/helpers/beta/json-schema";
+import { corsHeaders, json, userError } from "../_shared/http.ts";
+import { aiErrorResponse, claude, DATA_RULE, MODEL, REFUSAL_FALLBACK, tagged } from "../_shared/claude.ts";
+import { hasPremium } from "../_shared/premium.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
-};
+const MAX_WORD = 80;
+const MAX_IDEA = 1500;
+
+const ANALYSIS = betaJSONSchemaOutputFormat({
+  type: "object",
+  properties: {
+    creative_analysis: { type: "string", description: "Qué funciona y qué no en la idea, 2-3 frases" },
+    improved_idea: { type: "string", description: "La idea reescrita: más original, impactante y coherente" },
+    creative_insight: { type: "string", description: "El insight humano o cultural profundo detrás de la idea" },
+    creative_concept: { type: "string", description: "El concepto creativo resumido en una sola frase potente" },
+    execution: { type: "string", description: "Cómo ejecutarla (campaña, redes, anuncio, producto…) con un ejemplo concreto" },
+    tagline: { type: "string", description: "Un tagline publicitario" },
+    campaign_message: { type: "string", description: "Un mensaje corto de campaña" },
+  },
+  required: ["creative_analysis", "improved_idea", "creative_insight", "creative_concept", "execution", "tagline", "campaign_message"],
+  additionalProperties: false,
+});
+
+const SYSTEM = `Eres un experto creativo de primer nivel que combina los roles de Director Creativo, Estratega de Marca y Copywriter. Analizas ideas que conectan una MARCA con un CONCEPTO y das un análisis profesional completo.
+Tu tono es perspicaz, incisivo, inspirador y claro. Evita las respuestas genéricas: sé específico y profesional.
+${DATA_RULE}
+Responde siempre en español de España.`;
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  const admin = createClient(Deno.env.get("SUPABASE_URL") ?? "", Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "", {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
 
   try {
-    const authHeader = req.headers.get("authorization");
-    if (!authHeader) {
-      return new Response(JSON.stringify({ error: "No autorizado" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-
-    const supabaseClient = createClient(supabaseUrl, serviceRoleKey, {
-      auth: { autoRefreshToken: false, persistSession: false },
-    });
-
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
-    if (userError || !user) {
-      return new Response(JSON.stringify({ error: "No autorizado" }), {
-        status: 401,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Check admin role
-    const { data: adminRole } = await supabaseClient
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle();
-
-    // Check premium status if not admin
-    if (!adminRole) {
-      const { data: profile } = await supabaseClient
-        .from("profiles")
-        .select("is_premium")
-        .eq("id", user.id)
-        .single();
-
-      if (!profile?.is_premium) {
-        return new Response(
-          JSON.stringify({ error: "premium_required", message: "Esta función forma parte del plan Premium." }),
-          { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-    }
+    const token = (req.headers.get("Authorization") ?? "").replace("Bearer ", "");
+    const { data: userData } = await admin.auth.getUser(token);
+    const user = userData.user;
+    if (!user) return json({ error: "No autorizado" }, 401);
+    if (!(await hasPremium(admin, user))) return userError("premium_required");
 
     const { dotA, dotB, idea } = await req.json();
-
-    if (!dotA || !dotB || !idea) {
-      return new Response(
-        JSON.stringify({ error: "Faltan dotA, dotB o idea" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (typeof dotA !== "string" || typeof dotB !== "string" || typeof idea !== "string" || !dotA.trim() || !dotB.trim() || !idea.trim()) {
+      return json({ error: "Faltan dotA, dotB o idea" }, 400);
     }
+    if (dotA.length > MAX_WORD || dotB.length > MAX_WORD) return userError("La marca o el concepto son demasiado largos.");
+    if (idea.length > MAX_IDEA) return userError(`La idea es demasiado larga: máximo ${MAX_IDEA} caracteres.`);
 
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    const response = await claude().beta.messages.parse({
+      model: MODEL,
+      max_tokens: 16000,
+      ...REFUSAL_FALLBACK,
+      output_config: { effort: "medium", format: ANALYSIS },
+      system: SYSTEM,
+      messages: [{
+        role: "user",
+        content: `Analiza esta idea creativa como un equipo de expertos.
 
-    const systemPrompt = `Eres un experto creativo de primer nivel que combina los roles de Director Creativo, Estratega de Marca y Copywriter.
-Tu tarea es analizar una idea creativa que conecta una MARCA con un CONCEPTO y proporcionar un análisis profesional completo.
-Debes responder ÚNICAMENTE llamando a la función expert_analysis. Nunca respondas con texto plano.
-IMPORTANTE: Toda tu respuesta debe estar en español de España.
-Tu tono debe ser perspicaz, incisivo, inspirador y claro. Evita respuestas genéricas. Sé específico y profesional.`;
+${tagged("marca", dotA)}
+${tagged("concepto", dotB)}
+${tagged("idea", idea)}
 
-    const userPrompt = `Analiza esta idea creativa como un equipo de expertos creativos:
-
-MARCA: "${dotA}"
-CONCEPTO: "${dotB}"
-
-IDEA DEL USUARIO: "${idea}"
-
-Proporciona un análisis experto completo siguiendo esta estructura:
-
-1. ANÁLISIS CREATIVO: Evaluación breve de qué funciona y qué no en la idea (2-3 frases).
-
-2. MEJORA DE LA IDEA: Reescribe la idea haciéndola más original, más impactante y más coherente.
-
-3. INSIGHT CREATIVO: Identifica un insight humano o cultural profundo detrás de la idea.
-
-4. CONCEPTO CREATIVO: Resume la idea en un concepto creativo potente de una sola frase.
-
-5. EJECUCIÓN PUBLICITARIA: Sugiere cómo se podría ejecutar la idea (campaña, contenido en redes sociales, anuncio, idea de producto, etc.) con un ejemplo concreto.
-
-6. COPY PUBLICITARIO: Genera un tagline y un mensaje corto de campaña.`;
-
-    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
-        ],
-        tools: [
-          {
-            type: "function",
-            function: {
-              name: "expert_analysis",
-              description: "Devuelve el análisis experto completo de una idea creativa.",
-              parameters: {
-                type: "object",
-                properties: {
-                  creative_analysis: { type: "string", description: "Análisis creativo: qué funciona y qué no (2-3 frases)" },
-                  improved_idea: { type: "string", description: "La idea reescrita de forma más original, impactante y coherente" },
-                  creative_insight: { type: "string", description: "Insight humano o cultural profundo detrás de la idea" },
-                  creative_concept: { type: "string", description: "Concepto creativo potente resumido en una frase" },
-                  execution: { type: "string", description: "Sugerencia concreta de ejecución publicitaria" },
-                  tagline: { type: "string", description: "Un tagline publicitario" },
-                  campaign_message: { type: "string", description: "Un mensaje corto de campaña" },
-                },
-                required: ["creative_analysis", "improved_idea", "creative_insight", "creative_concept", "execution", "tagline", "campaign_message"],
-                additionalProperties: false,
-              },
-            },
-          },
-        ],
-        tool_choice: { type: "function", function: { name: "expert_analysis" } },
-      }),
+Devuelve:
+1. Análisis creativo: qué funciona y qué no (2-3 frases).
+2. Mejora de la idea: reescríbela más original, impactante y coherente.
+3. Insight creativo: el insight humano o cultural profundo detrás de la idea.
+4. Concepto creativo: la idea en una sola frase potente.
+5. Ejecución publicitaria: cómo ejecutarla (campaña, contenido en redes, anuncio, producto…) con un ejemplo concreto.
+6. Copy: un tagline y un mensaje corto de campaña.`,
+      }],
     });
 
-    if (!response.ok) {
-      if (response.status === 429) {
-        return new Response(
-          JSON.stringify({ error: "Límite de uso alcanzado. Inténtalo de nuevo en un momento." }),
-          { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      if (response.status === 402) {
-        return new Response(
-          JSON.stringify({ error: "Límite de uso de IA alcanzado. Añade créditos para continuar." }),
-          { status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-      const text = await response.text();
-      console.error("AI gateway error:", response.status, text);
-      throw new Error(`AI gateway error: ${response.status}`);
-    }
+    if (response.stop_reason === "refusal") return userError("La IA no ha podido analizar esta idea. Prueba a reformularla.");
+    const analysis = response.parsed_output;
+    if (!analysis) throw new Error(`La IA no devolvió el análisis (stop_reason: ${response.stop_reason})`);
 
-    const data = await response.json();
-    const toolCall = data.choices?.[0]?.message?.tool_calls?.[0];
-
-    if (!toolCall?.function?.arguments) {
-      throw new Error("No se recibió análisis de la IA");
-    }
-
-    const analysis = JSON.parse(toolCall.function.arguments);
-
-    return new Response(JSON.stringify(analysis), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return json(analysis);
   } catch (e) {
-    console.error("expert-analysis error:", e);
-    const message = e instanceof Error ? e.message : "Error desconocido";
-    return new Response(JSON.stringify({ error: message }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return aiErrorResponse(e);
   }
 });
