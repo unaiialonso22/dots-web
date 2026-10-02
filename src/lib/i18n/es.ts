@@ -241,7 +241,7 @@ const es = {
   confirm_meta_title: "Confirmando tu email · DOTS",
   confirm_checking: "Confirmando tu email…",
   confirm_failed_title: "Este enlace ya no sirve",
-  confirm_failed_desc: "Puede que ya lo hayas usado o que haya caducado. Inicia sesión; si tu email aún no está confirmado, te enviaremos otro enlace.",
+  confirm_failed_desc: "Puede que ya lo hayas usado o que haya caducado. Si ya confirmaste tu email, inicia sesión con normalidad.",
   confirm_go_login: "Ir a iniciar sesión",
 };
 

@@ -241,7 +241,7 @@ const en: Record<string, string> = {
   confirm_meta_title: "Confirming your email · DOTS",
   confirm_checking: "Confirming your email…",
   confirm_failed_title: "This link no longer works",
-  confirm_failed_desc: "You may have used it already or it may have expired. Sign in; if your email isn't confirmed yet, we'll send you a new link.",
+  confirm_failed_desc: "You may have used it already or it may have expired. If you've already confirmed your email, just sign in.",
   confirm_go_login: "Go to sign in",
 };
 
