@@ -218,6 +218,7 @@ const es = {
   checkout_methods: "Paga como prefieras",
   checkout_method_card: "Tarjeta",
   checkout_secure: "Pago seguro con Stripe. Los datos de tu tarjeta nunca pasan por DOTS.",
+  checkout_seller: "La venta la gestiona Link, el servicio de pagos de Stripe: te envía el recibo y en tu banco verás LINK.COM* CONNECTDOTS.ES.",
   checkout_cancel_hint: "Cancelas desde Premium → Gestionar suscripción, sin llamadas ni correos.",
   checkout_loading: "Preparando el pago…",
   checkout_error: "No hemos podido preparar el pago.",

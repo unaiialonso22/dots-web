@@ -159,7 +159,7 @@ export default function Checkout() {
               {t("checkout_methods")}
             </p>
             <ul className="flex flex-wrap gap-2 mb-7">
-              {["Apple Pay", "Google Pay", "PayPal", t("checkout_method_card")].map((method) => (
+              {["Apple Pay", "Google Pay", t("checkout_method_card")].map((method) => (
                 <li key={method} className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium">
                   {method}
                 </li>
@@ -170,6 +170,7 @@ export default function Checkout() {
               <Lock className="w-3.5 h-3.5 mt-0.5 shrink-0" />
               {t("checkout_secure")}
             </p>
+            <p className="text-xs text-muted-foreground mt-2">{t("checkout_seller")}</p>
             <p className="text-xs text-muted-foreground mt-2">{t("checkout_cancel_hint")}</p>
           </motion.aside>
 

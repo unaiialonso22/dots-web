@@ -218,6 +218,7 @@ const en: Record<string, string> = {
   checkout_methods: "Pay however you like",
   checkout_method_card: "Card",
   checkout_secure: "Secure payment with Stripe. Your card details never touch DOTS.",
+  checkout_seller: "The sale is handled by Link, Stripe's payment service: it sends you the receipt and your bank statement will show LINK.COM* CONNECTDOTS.ES.",
   checkout_cancel_hint: "Cancel from Premium → Manage subscription, no calls or emails.",
   checkout_loading: "Preparing checkout…",
   checkout_error: "We couldn't prepare the payment.",
