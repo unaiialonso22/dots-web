@@ -236,6 +236,13 @@ const en: Record<string, string> = {
   checkout_return_pending_title: "We're confirming your payment",
   checkout_return_pending_desc: "It can take a moment. If it isn't active in a few minutes, check again.",
   checkout_return_recheck: "Check again",
+
+  // Email confirmation
+  confirm_meta_title: "Confirming your email · DOTS",
+  confirm_checking: "Confirming your email…",
+  confirm_failed_title: "This link no longer works",
+  confirm_failed_desc: "You may have used it already or it may have expired. Sign in; if your email isn't confirmed yet, we'll send you a new link.",
+  confirm_go_login: "Go to sign in",
 };
 
 export default en;

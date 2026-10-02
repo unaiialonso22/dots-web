@@ -236,6 +236,13 @@ const es = {
   checkout_return_pending_title: "Estamos confirmando tu pago",
   checkout_return_pending_desc: "A veces tarda un momento. Si en unos minutos no se activa, vuelve a comprobarlo.",
   checkout_return_recheck: "Volver a comprobar",
+
+  // Confirmación de email
+  confirm_meta_title: "Confirmando tu email · DOTS",
+  confirm_checking: "Confirmando tu email…",
+  confirm_failed_title: "Este enlace ya no sirve",
+  confirm_failed_desc: "Puede que ya lo hayas usado o que haya caducado. Inicia sesión; si tu email aún no está confirmado, te enviaremos otro enlace.",
+  confirm_go_login: "Ir a iniciar sesión",
 };
 
 export default es;

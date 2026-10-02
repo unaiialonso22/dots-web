@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirma tu cuenta de DOTS</title>
+</head>
+<body style="margin:0;padding:0;background:#f2f3f8;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f8;padding:32px 16px;">
+  <tr><td align="center">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:16px;overflow:hidden;">
+      <tr><td style="background:#000a44;padding:26px 32px;">
+        <span style="font-family:Arial,Helvetica,sans-serif;font-size:26px;font-weight:700;letter-spacing:3px;color:#ffffff;">DOTS</span>
+      </td></tr>
+      <tr><td style="padding:32px;font-family:Arial,Helvetica,sans-serif;color:#000a44;">
+        <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;color:#000a44;">Confirma tu email</h1>
+        <p style="margin:0 0 24px;font-size:16px;line-height:1.6;color:#4a5170;">Gracias por crear tu cuenta en DOTS. Pulsa el botón para confirmar tu email y empezar a entrenar tu creatividad.</p>
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:999px;background:#000a44;">
+          <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/challenge" style="display:inline-block;padding:14px 28px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;text-decoration:none;border-radius:999px;">Confirmar mi email</a>
+        </td></tr></table>
+        <p style="margin:24px 0 0;font-size:13px;line-height:1.6;color:#6b7190;">Si el botón no funciona, copia este enlace en tu navegador:<br><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/challenge" style="color:#6f4fd1;word-break:break-all;">{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email&amp;next=/challenge</a></p>
+      </td></tr>
+      <tr><td style="padding:20px 32px;border-top:1px solid #e6e8f0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#8a8fa8;">
+        Si no has creado una cuenta en DOTS, ignora este correo.<br>DOTS · <a href="https://connectdots.es" style="color:#8a8fa8;">connectdots.es</a>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

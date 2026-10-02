@@ -15,6 +15,7 @@ import Challenge from "./pages/Challenge";
 import Training from "./pages/Training";
 import Feed from "./pages/Feed";
 import Auth from "./pages/Auth";
+import AuthConfirm from "./pages/AuthConfirm";
 import Portfolio from "./pages/Portfolio";
 import Improve from "./pages/Improve";
 import Checkout from "./pages/Checkout";
@@ -45,6 +46,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/blog/bloqueo-creativo" element={<BlogBloqueoCreativo />} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
+        <Route path="/auth/confirm" element={<AuthConfirm />} />
         <Route path="/challenge" element={<PageTransition><Challenge /></PageTransition>} />
         <Route path="/training" element={<PageTransition><Training /></PageTransition>} />
         <Route path="/improve" element={<PageTransition><Improve /></PageTransition>} />
